@@ -39,3 +39,7 @@ Route::post('/sign-up', function (){
  * dsghrd
  * sgrg
  */
+
+
+Route::post('/sign-up', [UserController::class,'postSignUp']) ;
+//sds
