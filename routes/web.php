@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// commit 2 test
 
 Route::get('home',function () {
     return view("home");
