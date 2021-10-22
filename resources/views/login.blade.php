@@ -11,6 +11,11 @@
 
 </style>
 <body>
+@if(Session::has('success'))
+    <div>
+        {{Session::get('success')}}
+    </div>
+@endif
     <h1>Login</h1>
 
         <form action="/login" method="post">
@@ -28,7 +33,7 @@
     <div>
         Copyright {{$data}}
     </div>
-    <a href="{{ route('user.signup') }}"></a>
+    <a href="{{ route('login') }}"></a>
 
 @if($status)
     <button>Create</button>

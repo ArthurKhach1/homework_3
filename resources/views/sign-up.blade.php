@@ -11,7 +11,11 @@
 
 </style>
 <body>
+
+
 <h1>Login</h1>
+
+
 
 <form action="/sign-up" method="post">
     @csrf
@@ -21,7 +25,7 @@
         <input type="email" name="email" placeholder="Email..">
     </div>
     <div>
-        <input type="password" name="pass" placeholder="Password">
+        <input type="password" name="password" placeholder="Password">
     </div>
     <div>
         <input type="submit" value="Save">

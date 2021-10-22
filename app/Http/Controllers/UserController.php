@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -22,11 +23,22 @@ class UserController extends Controller
 
     public function postSignUp(Request $request)
     {
-        $data = $request->all();
-        dd($data);
+        $data = $request->only('name', 'email','password');
+        $user = User::create($data);
+        return redirect()->route('login')->with('success', 'You have successfuli signuped');
     }
     public function getSignUp()
     {
         return view('sign-up');
+    }
+
+    public function getUsers()
+    {
+        $users = User::get();// collection a tali
+
+        return view("users-list",[
+            'users' => $users
+        ]);
+
     }
 }

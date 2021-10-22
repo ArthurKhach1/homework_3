@@ -25,14 +25,16 @@ Route::get('home',function () {
 
 use App\Http\Controllers\UserController;
 
-Route::get('/login', [UserController::class,'getLogin'])->name("user.signup") ;
+Route::get('/login', [UserController::class,'getLogin'])->name("login") ;
 Route::post('/login', [UserController::class,'postLogin']) ;
+
+
 Route::get('/sign-up', [UserController::class,'getSignUp']) ;
 Route::post('/sign-up', [UserController::class,'postSignUp']) ;
-Route::post('/sign-up', function (){
-    dd(7);
-}) ;
+;
 
+
+Route::get('users',[UserController::class,'getUsers'])->name('users.list');
 /*
  * sdgsrg
  * srgr
