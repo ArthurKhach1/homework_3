@@ -1,19 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-</head>
-<style>
+@extends('app.master')
+@section('title','Save Product')
 
-</style>
-<body>
+@section("content")
 
-
-<h1>Login</h1>
+    @include('includes.massages')
+<h1>Save Products</h1>
 
 
 
@@ -21,18 +12,19 @@
     @csrf
     <div>
         <input type="name" name="name" placeholder="Name..">
-    </div><div>
+    </div>
+    <div>
         <input type="text" name="price" placeholder="Price..">
+    </div>
+    <div>
+
+        <input type="hidden" name="user_name" value="{{Auth::user()->name}}">
+
     </div>
 
     <div>
         <input type="submit" value="Save">
     </div>
 </form>
-<div>
-
-</div>
-</body>
-</html>
-
+@endsection
 

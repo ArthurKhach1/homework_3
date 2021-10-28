@@ -1,42 +1,22 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-</head>
-<style>
+@extends('app.master')
+@section('title','login')
 
-</style>
-<body>
-@if(Session::has('success'))
-    <div>
-        {{Session::get('success')}}
-    </div>
-@endif
+@section("content")
+
+@include('includes.massages')
     <h1>Login</h1>
 
-        <form action="/login" method="post">
+        <form action="/login" method="post" >
             @csrf
             <div>
-                    <input type="email" placeholder="Email..">
+                    <input type="email" name="email" placeholder="Email.." >
             </div>
             <div>
-                    <input type="password" placeholder="Password">
+                    <input type="password" name="password" placeholder="Password">
             </div>
             <div>
-                <input type="submit" value="Save">
+                <input type="submit" value="Log in">
             </div>
         </form>
-    <div>
-        Copyright {{$data}}
-    </div>
-    <a href="{{ route('login') }}"></a>
 
-@if($status)
-    <button>Create</button>
-@endif
-</body>
-</html>
+@endsection

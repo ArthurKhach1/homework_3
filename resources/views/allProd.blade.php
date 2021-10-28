@@ -1,29 +1,38 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h1>All products list</h1>
+@extends('app.master')
+@section('title','All Products')
 
-@foreach($prods as $prod)
-    <div>
-        <ul>
-            <li>{{$prod->id}}</li>
-            <li>{{$prod->name}}</li>
-            <li>{{$prod->price}}</li>
-            <li>{{$prod->created_at}}</li>
+@section("content")
 
-        </ul>
-    </div>
-    <hr>
-
-@endforeach
+    @include('includes.massages')
+        <h1>All products list</h1>
+        @if($status)
+        <a href="/saveprod"><button class="danger">Creat Products</button></a>
+        @endif
 
 
-</body>
-</html>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Time</th>
+
+            </tr>
+            </thead>
+            @foreach($prods as $prod)
+                @if ($prod['user_name']===Auth::user()->name)
+
+                <tbody>
+                    <tr>
+                        <td >{{$prod->id}}</td>
+                        <td>{{$prod->name}}</td>
+                        <td>{{$prod->price}}</td>
+                        <td>{{$prod->created_at}}</td>
+                    </tr>
+                    </tbody>
+
+                @endif
+            @endforeach
+        </table>
+@endsection
