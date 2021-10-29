@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +32,14 @@ Route::post('/login', [UserController::class,'postLogin']) ;
 Route::get('/sign-up', [UserController::class,'getSignUp']) ;
 Route::post('/sign-up', [UserController::class,'postSignUp']) ;
 
-Route::get('users',[UserController::class,'getUsers'])->name('users.list');
+
+Route::group(['middleware'=>['loggedIn']], function (){
+    Route::get('users',[UserController::class,'getUsers'])->name('users.list');
+    Route::get('allProd',[ProductController::class,'getProd'])->name('allProd');
+    Route::post('/saveprod', [ProductController::class,'postSaveProd']) ;
+    Route::get('/saveprod', [ProductController::class,'getSaveProd']) ;
+});
 
 
-
-
-Route::get('allProd',[UserController::class,'getProd'])->name('allProd');
-Route::post('/saveprod', [UserController::class,'postSaveProd']) ;
-Route::get('/saveprod', [UserController::class,'getSaveProd']) ;
 
 

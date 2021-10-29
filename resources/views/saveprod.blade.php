@@ -18,7 +18,7 @@
     </div>
     <div>
 
-        <input type="hidden" name="user_name" value="{{Auth::user()->name}}">
+{{--        <input type="hidden" name="user_name" value="{{Auth::user()->name}}">--}}
 
     </div>
 

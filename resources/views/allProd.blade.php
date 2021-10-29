@@ -21,7 +21,7 @@
             </tr>
             </thead>
             @foreach($prods as $prod)
-                @if ($prod['user_name']===Auth::user()->name)
+
 
                 <tbody>
                     <tr>
@@ -32,7 +32,7 @@
                     </tr>
                     </tbody>
 
-                @endif
+
             @endforeach
         </table>
 @endsection

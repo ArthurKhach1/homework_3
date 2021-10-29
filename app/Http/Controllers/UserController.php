@@ -54,31 +54,5 @@ class UserController extends Controller
     }
 
 
-    public function getSaveProd()
-    {
-        $prods = products::get();
-        if (!Auth::check()){
-            return redirect()->route('login')->with('error', "gna login exi");
-        }
-        return view('saveprod');
-    }
 
-
-    public function getProd()
-    {
-        $prods = products::get();// collection a tali
-            return view("allProd", [
-                'prods' => $prods,
-                'status' => true
-            ]);
-//        }
-    }
-
-    public function postSaveProd(Request $request)
-    {
-        $data = $request->only('name','price','user_name');
-//        dd($data);
-        $user = products::create($data);
-        return redirect()->route('allProd')->with('success', 'You have successfully created');
-    }
 }
