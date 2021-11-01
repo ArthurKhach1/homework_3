@@ -35,6 +35,9 @@ class UserController extends Controller
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
         $user = User::create($data);
+        $imagePath = $data['img']->store('profile_images');
+        $user->img_path = $imagePath;
+        $user->save();
         return redirect()->route('login')->with('success', 'You have successfuli signuped');
     }
 
@@ -53,6 +56,9 @@ class UserController extends Controller
 
     }
 
-
-
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }

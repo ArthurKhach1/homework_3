@@ -17,7 +17,9 @@
         </ul>
     </div>
     <hr>
+<div>{{$user->img_path}}
 
+</div>
 @endforeach
 
 @endsection

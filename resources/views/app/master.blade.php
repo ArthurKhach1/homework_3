@@ -10,6 +10,12 @@
 
 </head>
 <body>
+@if(\Illuminate\Support\Facades\Auth::check())
+<form action="/logout" method="post">
+    @csrf
+    <input type="submit" value="Logout">
+</form>
+@endif
 <div class="container">
 
     @yield('content')

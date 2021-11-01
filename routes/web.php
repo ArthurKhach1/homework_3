@@ -39,6 +39,7 @@ Route::group(['middleware'=>['loggedIn']], function (){
     Route::post('/saveprod', [ProductController::class,'postSaveProd']) ;
     Route::get('/saveprod', [ProductController::class,'getSaveProd']) ;
     Route::get('/feed', [DashboardController::class,'getFeed']) ;
+    Route::post('/logout', [UserController::class,'logout']) ;
 });
 
 
