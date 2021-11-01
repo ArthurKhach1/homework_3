@@ -42,4 +42,8 @@ class User extends Authenticatable
         return strtoupper($this->name);
     }
 
+    public function Products()
+    {
+        return $this->hasMany(products::class);
+    }
 }

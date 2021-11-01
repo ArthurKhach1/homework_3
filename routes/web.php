@@ -25,7 +25,7 @@ Route::get('home',function () {
 });
 
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\DashboardController;
 Route::get('/login', [UserController::class,'getLogin'])->name("login") ;
 Route::post('/login', [UserController::class,'postLogin']) ;
 
@@ -38,6 +38,7 @@ Route::group(['middleware'=>['loggedIn']], function (){
     Route::get('allProd',[ProductController::class,'getProd'])->name('allProd');
     Route::post('/saveprod', [ProductController::class,'postSaveProd']) ;
     Route::get('/saveprod', [ProductController::class,'getSaveProd']) ;
+    Route::get('/feed', [DashboardController::class,'getFeed']) ;
 });
 
 

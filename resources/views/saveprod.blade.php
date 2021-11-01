@@ -21,7 +21,11 @@
 {{--        <input type="hidden" name="user_name" value="{{Auth::user()->name}}">--}}
 
     </div>
-
+    <select name="category_id" id="">
+        @foreach($categ as $categs)
+            <option value="{{$categs->id}}">{{$categs->name}}</option>
+        @endforeach
+    </select>
     <div>
         <input type="submit" value="Save">
     </div>

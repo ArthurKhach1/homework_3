@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categories;
 use App\Models\products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,8 +12,10 @@ class ProductController extends Controller
     public function getSaveProd()
     {
         $prods = products::get();
-
-        return view('saveprod');
+        $categ = categories::get();
+        return view('saveprod',[
+            "categ" => $categ
+        ]);
     }
 
 
@@ -28,9 +31,9 @@ class ProductController extends Controller
 
     public function postSaveProd(Request $request)
     {
-        $data = $request->only('name','price','user_name');
+        $data = $request->only('name','price','user_name','category_id');
         $data['user_id'] = Auth::user()->id;
-//        dd($data);
+        $data['user_name'] = Auth::user()->name;
         $user = products::create($data);
         return redirect()->route('allProd')->with('success', 'You have successfully created');
     }
