@@ -26,8 +26,10 @@ Route::get('home',function () {
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CarsController;
 Route::get('/login', [UserController::class,'getLogin'])->name("login") ;
-Route::post('/login', [UserController::class,'postLogin']) ;
+//Route::post('/login', [UserController::class,'postLogin']) ;
+Route::post('/login', [CarsController::class,'postList'])->name('list') ;
 
 Route::get('/sign-up', [UserController::class,'getSignUp']) ;
 Route::post('/sign-up', [UserController::class,'postSignUp']) ;
@@ -40,6 +42,12 @@ Route::group(['middleware'=>['loggedIn']], function (){
     Route::get('/saveprod', [ProductController::class,'getSaveProd']) ;
     Route::get('/feed', [DashboardController::class,'getFeed']) ;
     Route::post('/logout', [UserController::class,'logout']) ;
+
+
+    Route::post('/cars', [CarsController:: class,'postCars']) ;
+    Route::get('/cars', [CarsController::class,'getCars']) ;
+
+    Route::get('/list', [CarsController::class,'getList']) ;
 });
 
 
