@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserCreatedEvent;
 use App\Http\Requests\CreatUsersRequest;
 use App\Models\products;
 use Illuminate\Http\Request;
@@ -33,11 +34,15 @@ class UserController extends Controller
     public function postSignUp(CreatUsersRequest $request)
     {
         $data = $request->validated();
+
         $data['password'] = bcrypt($data['password']);
         $user = User::create($data);
-        $imagePath = $data['img']->store('profile_images');
-        $user->img_path = $imagePath;
-        $user->save();
+//        $imagePath = $data['img']->store('profile_images');
+//        $user->img_path = $imagePath;
+//        $user->save();
+
+        event(new UserCreatedEvent($user));
+
         return redirect()->route('login')->with('success', 'You have successfuli signuped');
     }
 
