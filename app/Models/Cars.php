@@ -12,7 +12,9 @@ class Cars extends Model
         'name',
         'color',
         'price',
+        'categories_id',
         'user_id',
+        'user_email',
 
     ];
 

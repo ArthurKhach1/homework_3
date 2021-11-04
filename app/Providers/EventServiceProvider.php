@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\CarCreatedEvent;
 use App\Events\UserCreatedEvent;
+use App\Listeners\CarCreatedListener;
 use App\Listeners\UserCreatedListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -23,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
 
         UserCreatedEvent::class => [
             UserCreatedListener::class
+        ],
+        CarCreatedEvent::class => [
+            CarCreatedListener::class
         ]
     ];
 
