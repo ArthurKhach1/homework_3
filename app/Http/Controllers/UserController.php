@@ -31,7 +31,7 @@ class UserController extends Controller
         }
     }
 
-    public function postSignUp(CreatUsersRequest $request)
+    public function store(CreatUsersRequest $request)
     {
         $data = $request->validated();
 
@@ -65,5 +65,22 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    public function edit()
+    {
+        return view('users.edit',[
+            'user'=> Auth::user()
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+//        dd($request->all());
+        Auth::user()->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>$request->password,
+        ]);
     }
 }

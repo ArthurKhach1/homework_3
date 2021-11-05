@@ -2,6 +2,9 @@
 
 namespace App\Console;
 
+use App\Console\Commands\DeleteOldUsers;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,9 +27,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-    }
 
+        $schedule->command(DeleteOldUsers::class)->daily();
+
+        
+//        $schedule->call(function (){
+//            php artisan schedule:run
+//         User::where('created+at','<=',Carbon::now()->subYear())->delete() ;
+//        })->everyMinute();
+    }
     /**
      * Register the commands for the application.
      *
