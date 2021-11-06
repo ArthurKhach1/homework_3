@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
@@ -30,6 +31,7 @@ use App\Http\Controllers\CarsController;
 Route::get('/login', [UserController::class,'getLogin'])->name("login") ;
 //Route::post('/login', [UserController::class,'postLogin']) ;
 Route::post('/login', [CarsController::class,'postList'])->name('list') ;
+//Route::post('/login',[PhotoController::class,'show'])->name('photo.list');
 
 Route::get('/sign-up', [UserController::class,'getSignUp']) ;
 Route::post('/sign-up', [UserController::class,'store']) ;
@@ -53,6 +55,9 @@ Route::group(['middleware'=>['loggedIn']], function (){
     Route::put('users',[UserController::class,'update']);
     Route::delete('users',[UserController::class,'delete']);
 
+    Route::get('photos/create',[PhotoController::class,'edit'])->name('photo.create');
+    Route::post('photos/list',[PhotoController::class,'show'])->name('photo.list');
+    Route::get('photos/list',[PhotoController::class,'store'])->name('photo.show');
 });
 
 
