@@ -16,10 +16,14 @@
 
         </ul>
     </div>
+    <form action="/users" method="post">
+        @csrf
+        @method('delete')
+        <input type="hidden" name="id" value="{{$user->id}}">
+        <input type="submit" value="Delete">
+    </form>
     <hr>
-<div>{{$user->img_path}}
 
-</div>
 @endforeach
 
 @endsection

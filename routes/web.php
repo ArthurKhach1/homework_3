@@ -51,6 +51,7 @@ Route::group(['middleware'=>['loggedIn']], function (){
 
     Route::get('users/edit',[UserController::class,'edit'])->name('users.edit');
     Route::put('users',[UserController::class,'update']);
+    Route::delete('users',[UserController::class,'delete']);
 
 });
 

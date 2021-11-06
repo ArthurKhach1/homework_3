@@ -8,6 +8,7 @@ use App\Models\products;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 
 class UserController extends Controller
@@ -74,13 +75,26 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request,products $product)
     {
-//        dd($request->all());
-        Auth::user()->update([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>$request->password,
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+
+        $request->validate([
+            'name' => 'required',
+            'email' =>  ['required', Rule::unique('users')->ignore(Auth::user()->id)],
+            'password' => 'required|min:3'
         ]);
+        Auth::user()->update($data);
+    }
+
+
+    public function delete(Request $request)
+    {
+        $data = $request->all();
+        $user = User::find($data['id']);
+        $user->delete();
+
+        return redirect()->route('users.list');
     }
 }
