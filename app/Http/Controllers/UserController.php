@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\UserCreatedEvent;
 use App\Http\Requests\CreatUsersRequest;
 use App\Models\products;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -25,8 +26,11 @@ class UserController extends Controller
     public function postLogin(Request $request)
     {
         $data = $request->only('email', 'password');
+//        dd($data);
         if (Auth::attempt($data)){
-            return redirect()->route('allProd');
+        $data['last_login_at'] = Carbon::now()->toDateTimeString();
+            User::create($data);
+            return redirect()->route('photo.list');
         }else{
             return redirect()->back()->with('error', 'Invalid email or password');
         }

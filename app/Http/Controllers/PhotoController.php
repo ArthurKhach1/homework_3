@@ -31,6 +31,14 @@ class PhotoController extends Controller
         return view('photo.list',[
             'data'=>$data
         ]);
-}
+    }
+
+    public function destroy(Request $request){
+
+        $data = $request->all();
+        $photo = UserImage::find($data['id']);
+        $photo->delete();
+        return redirect()->route('photo.list')->with('Success','Deleted');
+    }
 
 }

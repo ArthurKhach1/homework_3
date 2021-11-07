@@ -21,6 +21,16 @@
                 <td >{{$img->id}}</td>
                 <td >{{$img->name}}</td>
                 <td>{{$img->created_at}}</td>
+                <td>
+                    <form action="list" method="post">
+                        @csrf
+                        @method('delete')
+                        <input type="hidden" name="id" value="{{$img->id}}">
+
+                        <input type="submit" name="delete" value="Delete" >
+                    </form>
+
+                </td>
             </tr>
             </tbody>
 

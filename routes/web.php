@@ -29,8 +29,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CarsController;
 Route::get('/login', [UserController::class,'getLogin'])->name("login") ;
-//Route::post('/login', [UserController::class,'postLogin']) ;
-Route::post('/login', [CarsController::class,'postList'])->name('list') ;
+Route::post('/login', [UserController::class,'postLogin']) ;
+//Route::post('/login', [CarsController::class,'postList'])->name('list') ;
 //Route::post('/login',[PhotoController::class,'show'])->name('photo.list');
 
 Route::get('/sign-up', [UserController::class,'getSignUp']) ;
@@ -58,6 +58,7 @@ Route::group(['middleware'=>['loggedIn']], function (){
     Route::get('photos/create',[PhotoController::class,'edit'])->name('photo.create');
     Route::post('photos/list',[PhotoController::class,'show'])->name('photo.list');
     Route::get('photos/list',[PhotoController::class,'store'])->name('photo.show');
+    Route::delete('photos/list',[PhotoController::class,'destroy']);
 });
 
 
