@@ -96,3 +96,7 @@ Route::get('test',function (){
 
 
 });
+//Route::middleware('auth:api')->get('/sign-up', function (Request $request){
+////    return $request->user()->id;
+//    dd(2);
+//}) ;
