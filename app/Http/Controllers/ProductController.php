@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\categories;
 use App\Models\products;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,13 +22,19 @@ class ProductController extends Controller
 
     public function getProd()
     {
-        $prods = products::where('user_id',Auth::user()->id)->get();// collection a tali
         return view("allProd", [
-            'prods' => $prods,
+            'prods' => (new ProductService())->getUserProducts(Auth::user()),
             'status' => true
         ]);
-//        }
     }
+
+    public function getApiProd()
+    {
+        return response()->json(
+            ( new ProductService())->getUserProducts(Auth::user())
+        );
+    }
+
 
     public function postSaveProd(Request $request)
     {
